@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject PlayerObject;
     public PlayerController Controller;
+    public PlayerStatus Stats;
 
     public void GiveHoldItem(GameObject item, bool isPrefab)
     {

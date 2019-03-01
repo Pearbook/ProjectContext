@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - laundry
+  - books
   layers:
   - Default
   - TransparentFX
