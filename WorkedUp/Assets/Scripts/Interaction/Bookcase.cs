@@ -13,6 +13,7 @@ public class Bookcase : MonoBehaviour
     [Header("Properties")]
     public GameObject BookSlotContainer;
     public List<GameObject> AllBookSlots;
+    private int slotIndex;
 
     public PingPongScale Scale;
 
@@ -25,6 +26,12 @@ public class Bookcase : MonoBehaviour
         obj.transform.parent = BookSlotContainer.transform;
 
         obj.transform.localEulerAngles = Vector3.zero;
+
+        if (slotIndex < AllBookSlots.Count)
+        {
+            obj.transform.position = AllBookSlots[slotIndex].transform.position;
+            slotIndex++;
+        }
 
         if (Scale != null)
             Scale.PingPong();
