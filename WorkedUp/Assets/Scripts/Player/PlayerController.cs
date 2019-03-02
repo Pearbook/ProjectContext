@@ -32,83 +32,88 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool allowMovement = true;
     [HideInInspector]
+    public bool isDisabled = false;
+    [HideInInspector]
     public GameObject holdObj;
     private float grabRadius = 1f;
 
     void Update()
     {
-        //TIJDELIJK
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Application.Quit();
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            SceneManager.LoadScene(1);
-
-        if (Input.GetKeyDown(KeyCode.Return))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-
-        if (allowMovement)
-            InputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (!isDisabled)
         {
-            if (CheckForObject() != null)
+            //TIJDELIJK
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                SceneManager.LoadScene(1);
+
+            if (Input.GetKeyDown(KeyCode.Return))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+
+            if (allowMovement)
+                InputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (holdObj == null)
-                    PickUp();
-                else
-                {
-                    if (CheckForInteraction() == null)
-                        Drop();
-                    else
-                        interactOnce = true;
-                }
-            }
-            else
-            {
-                if (CheckForInteraction() != null)
+                if (CheckForObject() != null)
                 {
                     if (holdObj == null)
+                        PickUp();
+                    else
                     {
-                        //isInteracting = true;
-                        interactOnce = true;
-                        //allowMovement = false;
+                        if (CheckForInteraction() == null)
+                            Drop();
+                        else
+                            interactOnce = true;
+                    }
+                }
+                else
+                {
+                    if (CheckForInteraction() != null)
+                    {
+                        if (holdObj == null)
+                        {
+                            //isInteracting = true;
+                            interactOnce = true;
+                            //allowMovement = false;
+                        }
                     }
                 }
             }
-        }
 
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                if (isInteracting)
+                {
+                    isInteracting = false;
+                    allowMovement = true;
+                }
+            }
+
             if (isInteracting)
             {
-                isInteracting = false;
-                allowMovement = true;
+                //CheckForInteraction().GetComponent<Interactable>().DoInteraction();
+                //CheckForInteraction().GetComponent<InteractableObject>().Interact();
             }
-        }
 
-        if(isInteracting)
-        {
-            //CheckForInteraction().GetComponent<Interactable>().DoInteraction();
-            //CheckForInteraction().GetComponent<InteractableObject>().Interact();
-        }
+            if (interactOnce)
+            {
+                interactOnce = false;
+                CheckForInteraction().GetComponent<InteractableObject>().Interact();
+                //CheckForInteraction().GetComponent<Interactable>().DoInteraction();
+            }
 
-        if (interactOnce)
-        {
-            interactOnce = false;
-            CheckForInteraction().GetComponent<InteractableObject>().Interact();
-            //CheckForInteraction().GetComponent<Interactable>().DoInteraction();
-        }
+            //rotates rigidbody to face its current velocity public void RotateToVelocity(float turnSpeed, bool ignoreY) {
+            Vector3 dir; if (ignoreY) dir = new Vector3(PlayerRigid.velocity.x, 0f, PlayerRigid.velocity.z); else dir = PlayerRigid.velocity;
 
-        //rotates rigidbody to face its current velocity public void RotateToVelocity(float turnSpeed, bool ignoreY) {
-        Vector3 dir; if (ignoreY) dir = new Vector3(PlayerRigid.velocity.x, 0f, PlayerRigid.velocity.z); else dir = PlayerRigid.velocity;
-
-        if (dir.magnitude > 0.1)
-        {
-            Quaternion dirQ = Quaternion.LookRotation(dir);
-            Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, dir.magnitude * TurnSpeed * Time.deltaTime);
-            PlayerRigid.MoveRotation(slerp);
+            if (dir.magnitude > 0.1)
+            {
+                Quaternion dirQ = Quaternion.LookRotation(dir);
+                Quaternion slerp = Quaternion.Slerp(transform.rotation, dirQ, dir.magnitude * TurnSpeed * Time.deltaTime);
+                PlayerRigid.MoveRotation(slerp);
+            }
         }
     }
 

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour
 {
+    [Header("Score")]
+    public int Score;
+
     [Header ("Properties")]
     public float MaxPlayerMotivation;
     public float CurrentPlayerMotivation;

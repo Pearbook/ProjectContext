@@ -25,6 +25,15 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    [Header ("Timer")]
+    [Tooltip("Time in seconds.")]
+    public float TimerLimit;
+
+    private float timer;
+    private float seconds;
+
+    private bool gameHasEnded;
+
     [Header("Detection")]
     public Vector3 Offset;
     public Vector3 Size;
@@ -38,6 +47,35 @@ public class GameplayManager : MonoBehaviour
         {
             CheckLevelForObjects();
         }
+
+        if (seconds >= TimerLimit)
+        {
+            // END THE GAME
+            EndGame();
+        }
+        else
+        {
+            UpdateTimer();
+        }
+    }
+
+    public void UpdateTimer()
+    {
+        timer += Time.deltaTime;
+        seconds = timer % 60;
+    }
+
+    public void EndGame()
+    {
+        if(!gameHasEnded)
+        {
+            CheckLevelForObjects();
+
+            PlayerManager.Player.DisablePlayer();
+            UserInterfaceManager.UI.DisplayScoreScreen();
+
+            gameHasEnded = true;
+        }
     }
 
     public void CheckLevelForObjects()
@@ -48,6 +86,8 @@ public class GameplayManager : MonoBehaviour
         {
             AllObjects.Add(coll.gameObject);
         }
+
+        PlayerManager.Player.Stats.Score -= AllObjects.Count;
     }
 
     Collider[] CheckForObjectsOnFloor()

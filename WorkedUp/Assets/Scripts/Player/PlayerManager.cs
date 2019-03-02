@@ -54,4 +54,12 @@ public class PlayerManager : MonoBehaviour
         Controller.holdObj = null;
     }
 
+    public void DisablePlayer()
+    {
+        Controller.allowMovement = false;
+        Controller.isDisabled = true;
+
+        Controller.PlayerRigid.velocity = Vector3.zero;
+    }
+
 }
