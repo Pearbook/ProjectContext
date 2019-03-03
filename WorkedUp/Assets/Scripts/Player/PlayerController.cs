@@ -132,14 +132,9 @@ public class PlayerController : MonoBehaviour
 
     void Drop()
     {
-        holdObj.transform.parent = transform;
+        holdObj.transform.parent = null;
 
-        Rigidbody rigid = holdObj.AddComponent<Rigidbody>();
-
-        rigid.AddForce(transform.TransformDirection(new Vector3(0, 1 * ThrowForce.y, 1 * ThrowForce.x)));
-        rigid.angularVelocity = new Vector3(ThrowSpin, ThrowSpin, ThrowSpin);
-
-        holdObj = null;
+        PlayerManager.Player.DropHoldItem(ThrowForce, ThrowSpin);
     }
 
     Collider CheckForObject()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -39,6 +40,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
+            if(item.tag == "child")
+            {
+                item.GetComponent<NavMeshAgent>().enabled = false;
+                item.GetComponent<NavMeshPractice>().enabled = false;
+            }
+
             Destroy(Controller.holdObj.GetComponent<Rigidbody>());
 
             Controller.holdObj.transform.parent = Controller.ObjectPivot.transform;
@@ -46,6 +53,25 @@ public class PlayerManager : MonoBehaviour
             Controller.holdObj.transform.position = Controller.ObjectPivot.transform.position;
         }
         
+    }
+
+    public void DropHoldItem(Vector2 ThrowForce, float ThrowSpin)
+    {
+        Rigidbody rigid = Controller.holdObj.AddComponent<Rigidbody>();
+
+        if (Controller.holdObj.tag == "child")
+        {
+            Controller.holdObj.GetComponent<NavMeshAgent>().enabled = true;
+            Controller.holdObj.GetComponent<NavMeshPractice>().enabled = true;
+
+            rigid.useGravity = false;
+            rigid.isKinematic = true;
+        }
+
+        rigid.AddForce(PlayerObject.transform.TransformDirection(new Vector3(0, 1 * ThrowForce.y, 1 * ThrowForce.x)));
+        rigid.angularVelocity = new Vector3(ThrowSpin, ThrowSpin, ThrowSpin);
+
+        Controller.holdObj = null;
     }
 
     public void RemoveHoldItem()
