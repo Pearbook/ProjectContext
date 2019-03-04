@@ -125,9 +125,11 @@ public class PlayerController : MonoBehaviour
 
     void PickUp()
     {
-        holdObj = CheckForObject().gameObject;
+        /*holdObj = CheckForObject().gameObject;
 
-        PlayerManager.Player.GiveHoldItem(holdObj, false);
+        PlayerManager.Player.GiveHoldItem(holdObj, false);*/
+
+        PlayerManager.Player.GiveHoldItem(CheckForObject().gameObject, false);
     }
 
     void Drop()

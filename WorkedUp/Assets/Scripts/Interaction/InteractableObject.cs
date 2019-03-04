@@ -7,6 +7,7 @@ public class InteractableObject : MonoBehaviour
     public CookingPot CookingBehaviour;
     public WashingMachine WashingBehaviour;
     public Bookcase BookcaseBehaviour;
+    public TrashCan TrashcanBehaviour;
 
     public void Interact()
     {
@@ -19,6 +20,8 @@ public class InteractableObject : MonoBehaviour
         if (BookcaseBehaviour != null)
             BookcaseBehaviour.Interaction();
 
+        if (TrashcanBehaviour != null)
+            TrashcanBehaviour.Interaction();
     }
 
 }

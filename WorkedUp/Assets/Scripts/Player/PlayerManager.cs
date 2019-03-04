@@ -40,13 +40,16 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
+            Controller.holdObj = item;
+
             if(item.tag == "child")
             {
                 item.GetComponent<NavMeshAgent>().enabled = false;
                 item.GetComponent<NavMeshPractice>().enabled = false;
             }
 
-            Destroy(Controller.holdObj.GetComponent<Rigidbody>());
+            if(Controller.holdObj.GetComponent<Rigidbody>() != null)
+                Destroy(Controller.holdObj.GetComponent<Rigidbody>());
 
             Controller.holdObj.transform.parent = Controller.ObjectPivot.transform;
             Controller.holdObj.transform.localEulerAngles = new Vector3(0, 0, 0);
