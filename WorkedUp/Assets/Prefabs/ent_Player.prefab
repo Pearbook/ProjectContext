@@ -3562,6 +3562,8 @@ MonoBehaviour:
   GrabMask:
     serializedVersion: 2
     m_Bits: 512
+  GrabArea: {x: 0.7, y: 1, z: 0.7}
+  GrabOffset: {x: 0, y: -0.5, z: 0}
   ThrowForce: {x: 150, y: 200}
   ThrowSpin: 100
   InteractMask:
@@ -3570,6 +3572,7 @@ MonoBehaviour:
   isInteracting: 0
   interactOnce: 0
   allowMovement: 1
+  isDisabled: 0
   holdObj: {fileID: 0}
 --- !u!114 &2192772486584407194
 MonoBehaviour:
@@ -3597,6 +3600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa87f69d3561c447940e1c54e1921f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score: 0
   MaxPlayerMotivation: 100
   CurrentPlayerMotivation: 100
   MotivationBar: {fileID: 0}

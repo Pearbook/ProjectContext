@@ -21,11 +21,15 @@ public class PlayerController : MonoBehaviour
     public GameObject ObjectPivot;
     public LayerMask GrabMask;
 
+    public Vector3 GrabArea;
+    public Vector3 GrabOffset;
+
     public Vector2 ThrowForce;
     public float ThrowSpin;
 
     [Header("Interaction")]
     public LayerMask InteractMask;
+
     [HideInInspector]
     public bool isInteracting, interactOnce;
 
@@ -35,7 +39,6 @@ public class PlayerController : MonoBehaviour
     public bool isDisabled = false;
     [HideInInspector]
     public GameObject holdObj;
-    private float grabRadius = 1f;
 
     void Update()
     {
@@ -125,10 +128,6 @@ public class PlayerController : MonoBehaviour
 
     void PickUp()
     {
-        /*holdObj = CheckForObject().gameObject;
-
-        PlayerManager.Player.GiveHoldItem(holdObj, false);*/
-
         PlayerManager.Player.GiveHoldItem(CheckForObject().gameObject, false);
     }
 
@@ -141,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     Collider CheckForObject()
     {
-        Collider[] hitColliders = Physics.OverlapBox(ObjectPivot.transform.position, new Vector3(grabRadius, grabRadius, grabRadius), Quaternion.identity, GrabMask);
+        Collider[] hitColliders = Physics.OverlapBox(ObjectPivot.transform.position + GrabOffset, new Vector3(GrabArea.x/2, GrabArea.y/2, GrabArea.z/2), transform.localRotation, GrabMask);
 
         if (hitColliders.Length > 0)
             return hitColliders[0];
@@ -151,11 +150,17 @@ public class PlayerController : MonoBehaviour
 
     Collider CheckForInteraction()
     {
-        Collider[] hitColliders = Physics.OverlapBox(ObjectPivot.transform.position, new Vector3(grabRadius, grabRadius, grabRadius), Quaternion.identity, InteractMask);
+        Collider[] hitColliders = Physics.OverlapBox(ObjectPivot.transform.position + GrabOffset, new Vector3(GrabArea.x / 2, GrabArea.y / 2, GrabArea.z / 2), transform.localRotation, InteractMask);
 
         if (hitColliders.Length > 0)
             return hitColliders[0];
         else
             return null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(ObjectPivot.transform.position + GrabOffset, GrabArea);
     }
 }

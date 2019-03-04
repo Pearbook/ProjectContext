@@ -59,6 +59,11 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    public void AddScore(int amount)
+    {
+        PlayerManager.Player.Stats.Score += amount;
+    }
+
     public void UpdateTimer()
     {
         timer += Time.deltaTime;

@@ -52,6 +52,9 @@ public class TrashCan : MonoBehaviour
         playerObj.transform.position = transform.position;
         playerObj.SetActive(false);
 
+        if(playerObj.GetComponent<PickUpProperties>() != null)
+            GameplayManager.Gameplay.AddScore(playerObj.GetComponent<PickUpProperties>().PointsOnTrash);
+
         AllTrash.Add(playerObj);
 
         PlayerManager.Player.Controller.holdObj = null;
