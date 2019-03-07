@@ -70,6 +70,8 @@ public class TrashCan : MonoBehaviour
 
         AllTrash.RemoveAt(AllTrash.Count - 1);
 
+        InstructionGroup.alpha = 0;
+
         if (Scale != null)
             Scale.PingPong();
     }

@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 2918031710831115839}
   m_Layer: 9
   m_Name: ent_pot
-  m_TagString: Untagged
+  m_TagString: food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

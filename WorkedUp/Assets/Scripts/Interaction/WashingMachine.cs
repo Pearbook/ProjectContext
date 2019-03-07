@@ -147,8 +147,12 @@ public class WashingMachine : MonoBehaviour
         {
             if (PlayerManager.Player.Controller.holdObj.tag == "laundry")
             {
-                if (currentItemCount < ItemLimit)
-                    AddToMachine();
+                if (PlayerManager.Player.Controller.holdObj.GetComponent<PickUpProperties>() != null)
+                {
+                    if (!PlayerManager.Player.Controller.holdObj.GetComponent<PickUpProperties>().isClean)
+                        if (currentItemCount < ItemLimit)
+                            AddToMachine();
+                }
             }
         }
         else

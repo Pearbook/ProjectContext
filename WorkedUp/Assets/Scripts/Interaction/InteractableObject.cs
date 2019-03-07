@@ -8,6 +8,9 @@ public class InteractableObject : MonoBehaviour
     public WashingMachine WashingBehaviour;
     public Bookcase BookcaseBehaviour;
     public TrashCan TrashcanBehaviour;
+    public DinnerTable DinnerTableBehaviour;
+    public LaundryBasket BasketBehaviour;
+    public MobilePhone MobileBehaviour;
 
     public void Interact()
     {
@@ -22,6 +25,16 @@ public class InteractableObject : MonoBehaviour
 
         if (TrashcanBehaviour != null)
             TrashcanBehaviour.Interaction();
+
+        if (DinnerTableBehaviour != null)
+            DinnerTableBehaviour.Interaction();
+
+        if (BasketBehaviour != null)
+            BasketBehaviour.Interaction();
+
+        if (MobileBehaviour != null)
+            MobileBehaviour.Interaction();
+
     }
 
 }

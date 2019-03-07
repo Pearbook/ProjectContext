@@ -5,4 +5,7 @@ using UnityEngine;
 public class PickUpProperties : MonoBehaviour
 {
     public int PointsOnTrash;
+
+    [Header("Laundry")]
+    public bool isClean;
 }
