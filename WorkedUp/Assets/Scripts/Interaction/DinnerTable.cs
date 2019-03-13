@@ -14,6 +14,10 @@ public class DinnerTable : MonoBehaviour
     public GameObject SetTableContainer;
     public GameObject CookPotContainer;
 
+    [Header("Particle Effect")]
+    public GameObject SmokeEffect;
+
+    [Header ("Other")]
     public PingPongScale Scale;
 
     private bool isSet;
@@ -35,6 +39,8 @@ public class DinnerTable : MonoBehaviour
             Scale.PingPong();
 
         isSet = true;
+
+        SmokeEffect.SetActive(true);
     }
 
     public void Interaction()

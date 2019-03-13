@@ -12,7 +12,8 @@ public class MobilePhone : MonoBehaviour
     private Vector3 startRot;
     private Vector3 startScale;
 
-    private bool isOpen;
+    [HideInInspector]
+    public bool isOpen;
     private bool isMoving;
 
     public float TimeToMove;
@@ -21,6 +22,9 @@ public class MobilePhone : MonoBehaviour
     public CanvasGroup NotificationCanvas;
 
     public GameObject UICamera;
+
+    [Header("Other")]
+    public PingPongScale Scale;
 
     private void Start()
     {
@@ -68,6 +72,8 @@ public class MobilePhone : MonoBehaviour
 
                 transform.gameObject.GetComponent<BoxCollider>().enabled = false;
                 SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("UI"));
+
+                MobileManager.Mobile.HideNotification();
             }
         }
     }

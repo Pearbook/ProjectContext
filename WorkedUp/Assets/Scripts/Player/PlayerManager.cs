@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
             GameObject prefab = (GameObject)Instantiate(item, Controller.ObjectPivot.transform.position, Quaternion.identity);
 
             prefab.transform.parent = Controller.ObjectPivot.transform;
+            prefab.GetComponent<BoxCollider>().isTrigger = true;
             Controller.holdObj = prefab;
         }
         else
@@ -50,6 +51,8 @@ public class PlayerManager : MonoBehaviour
 
             if(Controller.holdObj.GetComponent<Rigidbody>() != null)
                 Destroy(Controller.holdObj.GetComponent<Rigidbody>());
+
+            Controller.holdObj.GetComponent<Collider>().isTrigger = true;
 
             Controller.holdObj.transform.parent = Controller.ObjectPivot.transform;
             Controller.holdObj.transform.localEulerAngles = new Vector3(0, 0, 0);
@@ -73,6 +76,8 @@ public class PlayerManager : MonoBehaviour
 
         rigid.AddForce(PlayerObject.transform.TransformDirection(new Vector3(0, 1 * ThrowForce.y, 1 * ThrowForce.x)));
         rigid.angularVelocity = new Vector3(ThrowSpin, ThrowSpin, ThrowSpin);
+
+        Controller.holdObj.GetComponent<Collider>().isTrigger = false;
 
         Controller.holdObj = null;
     }

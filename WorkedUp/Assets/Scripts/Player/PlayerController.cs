@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interaction")]
     public LayerMask InteractMask;
+    public InteractableObject ObjectInRange;
 
     [HideInInspector]
     public bool isInteracting, interactOnce;
@@ -60,6 +61,22 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+
+                if(ObjectInRange != null)
+                {
+                    ObjectInRange.Interact();
+                }
+                else
+                {
+                    if (CheckForObject() != null)
+                    {
+                        if (holdObj == null)
+                            PickUp();
+                        else
+                            Drop();
+                    }
+                }
+                /*
                 if (CheckForObject() != null)
                 {
                     if (holdObj == null)
@@ -83,7 +100,7 @@ public class PlayerController : MonoBehaviour
                             //allowMovement = false;
                         }
                     }
-                }
+                }*/
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
@@ -93,19 +110,6 @@ public class PlayerController : MonoBehaviour
                     isInteracting = false;
                     allowMovement = true;
                 }
-            }
-
-            if (isInteracting)
-            {
-                //CheckForInteraction().GetComponent<Interactable>().DoInteraction();
-                //CheckForInteraction().GetComponent<InteractableObject>().Interact();
-            }
-
-            if (interactOnce)
-            {
-                interactOnce = false;
-                CheckForInteraction().GetComponent<InteractableObject>().Interact();
-                //CheckForInteraction().GetComponent<Interactable>().DoInteraction();
             }
 
             //rotates rigidbody to face its current velocity public void RotateToVelocity(float turnSpeed, bool ignoreY) {

@@ -15,6 +15,9 @@ public class TrashCan : MonoBehaviour
     public float Range;
     private float dist;
 
+    [Header("Particle Effect")]
+    public ParticleSystem SmokePuff;
+
     [Header ("UI")]
     public CanvasGroup InstructionGroup;
 
@@ -58,6 +61,9 @@ public class TrashCan : MonoBehaviour
         AllTrash.Add(playerObj);
 
         PlayerManager.Player.Controller.holdObj = null;
+
+        if(!SmokePuff.isPlaying)
+            SmokePuff.Play();
 
         if (Scale != null)
             Scale.PingPong();

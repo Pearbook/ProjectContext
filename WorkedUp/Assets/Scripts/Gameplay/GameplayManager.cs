@@ -41,6 +41,8 @@ public class GameplayManager : MonoBehaviour
 
     private List<GameObject> AllObjects;
 
+    public List<Range> AllRange;
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.K))
@@ -57,6 +59,9 @@ public class GameplayManager : MonoBehaviour
         {
             UpdateTimer();
         }
+        
+        if(AllRange.Count == 0)
+            PlayerManager.Player.Controller.ObjectInRange = null;
     }
 
     public void AddScore(int amount)
@@ -100,6 +105,17 @@ public class GameplayManager : MonoBehaviour
         Collider[] allColliders = Physics.OverlapBox(Offset, new Vector3(Size.x/2, Size.y/2, Size.z/2), Quaternion.identity, Mask);
 
         return allColliders;
+    }
+
+    public void AddToRange(Range myRange)
+    {
+        if(!AllRange.Contains(myRange))
+            AllRange.Add(myRange);
+    }
+
+    public void RemoveRange(Range myRange)
+    {
+        AllRange.Remove(myRange);
     }
 
     private void OnDrawGizmos()
