@@ -1,44 +1,18 @@
 fileFormatVersion: 2
-guid: 0f1b8d79fa32f804b8e8edafb75e0292
+guid: 406edac4cb9feb340984ff38f1c40f77
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Chaire
-    100002: Chaire003
-    100004: Chaire004
-    100006: Chaire2
-    100008: //RootNode
-    100010: Table
-    100012: Chaire (2)
-    100014: Texture Group
-    400000: Chaire
-    400002: Chaire003
-    400004: Chaire004
-    400006: Chaire2
-    400008: //RootNode
-    400010: Table
-    400012: Chaire (2)
-    400014: Texture Group
-    2100000: 02 - Default
-    2100002: No Name
-    2300000: Chaire
-    2300002: Chaire003
-    2300004: Chaire004
-    2300006: Chaire2
-    2300008: Table
-    2300010: Chaire (2)
-    3300000: Chaire
-    3300002: Chaire003
-    3300004: Chaire004
-    3300006: Chaire2
-    3300008: Table
-    3300010: Chaire (2)
+    100000: //RootNode
+    100002: Table
+    100004: Texture Group
+    400000: //RootNode
+    400002: Table
+    400004: Texture Group
+    2100000: No Name
+    2300000: Table
+    3300000: Table
     4300000: Table
-    4300002: Chaire
-    4300004: Chaire2
-    4300006: Chaire003
-    4300008: Chaire004
-    4300010: Chaire (2)
   externalObjects: {}
   materials:
     importMaterials: 1

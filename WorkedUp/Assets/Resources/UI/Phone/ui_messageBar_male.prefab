@@ -204,10 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5deb0a65821f3439da26b0fe07206a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextObject: {fileID: 1229207872229658487}
-  MessageRect: {fileID: 1229207873225066545}
-  PanelRect: {fileID: 1229207873206020076}
-  ProfileImage: {fileID: 1229207873729936391}
+  MessageHeight: 6
 --- !u!1 &1229207873729936389
 GameObject:
   m_ObjectHideFlags: 0
