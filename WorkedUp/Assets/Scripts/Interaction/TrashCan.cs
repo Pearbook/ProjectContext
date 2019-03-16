@@ -81,4 +81,26 @@ public class TrashCan : MonoBehaviour
         if (Scale != null)
             Scale.PingPong();
     }
+
+    public void EmptyTrashCan()
+    {
+        for(int i = 0; i < AllTrash.Count; ++i)
+        {
+            AllTrash[i].SetActive(true);
+
+            AllTrash[i].GetComponent<Collider>().isTrigger = false;
+            AllTrash[i].AddComponent<Rigidbody>();
+
+            AllTrash[i].transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z - 0.5f);
+            AllTrash[i].transform.parent = null;
+
+            if (AllTrash[i].GetComponent<PickUpProperties>() != null)
+                GameplayManager.Gameplay.AddScore(-AllTrash[i].GetComponent<PickUpProperties>().PointsOnTrash);
+
+            AllTrash.RemoveAt(i);
+        }
+        
+        if (Scale != null)
+            Scale.PingPong();
+    }
 }

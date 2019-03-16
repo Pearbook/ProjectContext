@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b251f51f39499e2459a0fda923097ca8
+guid: 9657bc14ae20b7c4bb8f8eac797ecd49
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,10 +8,10 @@ ModelImporter:
     2100000: 02 - Default
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Lamp
+    4300000: Cylinder002
   externalObjects: {}
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -44,10 +44,10 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 0
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1

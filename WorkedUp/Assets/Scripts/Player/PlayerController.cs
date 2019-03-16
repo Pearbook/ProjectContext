@@ -61,64 +61,7 @@ public class PlayerController : MonoBehaviour
                 InputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (isHolding)
-                {
-                    if (holdObj != null && ObjectInRange == null)
-                    {
-                        Drop();
-                    }
-                }
-
-                if (ObjectInRange == null)
-                {
-                    if (CheckForObject() != null)
-                    {
-                        if (holdObj == null)
-                            PickUp();
-                        //else
-                            //Drop();
-                    }
-                }
-                else
-                {
-                    if (CheckForObject() != null)
-                    {
-                        if (holdObj == null)
-                            PickUp();
-                    }
-                    else
-                    {
-                        ObjectInRange.Interact();
-                    }
-                }
-
-                /*
-                if (CheckForObject() != null)
-                {
-                    if (holdObj == null)
-                        PickUp();
-                    else
-                    {
-                        if (CheckForInteraction() == null)
-                            Drop();
-                        else
-                            interactOnce = true;
-                    }
-                }
-                else
-                {
-                    if (CheckForInteraction() != null)
-                    {
-                        if (holdObj == null)
-                        {
-                            //isInteracting = true;
-                            interactOnce = true;
-                            //allowMovement = false;
-                        }
-                    }
-                }*/
-            }
+                PlayerAction();
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -145,6 +88,27 @@ public class PlayerController : MonoBehaviour
     {
         if(allowMovement)
             PlayerRigid.velocity = new Vector3(InputAxis.x * MovementSpeed, PlayerRigid.velocity.y, InputAxis.y * MovementSpeed);
+    }
+
+    void PlayerAction()
+    {
+        if(CheckForObject() != null)
+        {
+            if (holdObj == null)
+            {
+                PickUp();
+                return;
+            }
+        }
+
+        if (ObjectInRange != null)
+        {
+            ObjectInRange.Interact();
+            return;
+        }
+
+        if (holdObj != null)
+            Drop();
     }
 
     void PickUp()

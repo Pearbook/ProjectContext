@@ -70,9 +70,12 @@ public class CookingPot : MonoBehaviour
                 Warning.alpha = 0;
                 BarGroup.alpha = 0;
 
-                if (SmokeParticle.isPlaying)
-                    SmokeParticle.Stop();
-
+                if (isActive)
+                {
+                    if (!SmokeParticle.isPlaying)
+                        SmokeParticle.Play();
+                }
+                
                 if (seconds >= TimerLimit)
                 {
                     seconds = 0;
@@ -93,8 +96,8 @@ public class CookingPot : MonoBehaviour
             {
                 if (!cookingDone)
                 {
-                    if (!SmokeParticle.isPlaying)
-                        SmokeParticle.Play();
+                    if (SmokeParticle.isPlaying)
+                        SmokeParticle.Stop();
 
                     if (seconds >= BurnTimerLimit)
                     {

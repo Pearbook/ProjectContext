@@ -44,4 +44,9 @@ public static class Custom
     {
         return (value - 1) * (0 - 1) / (maxValue - 1) + 1;
     }
+
+    public static float ReturnFillAmountRadial (float value, float maxValue)
+    {
+        return (value - 0) * (360 - 0) / (maxValue - 0) + 0;
+    }
 }

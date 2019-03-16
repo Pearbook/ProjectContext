@@ -45,8 +45,7 @@ public class PlayerManager : MonoBehaviour
 
             if(item.tag == "child")
             {
-                item.GetComponent<NavMeshAgent>().enabled = false;
-                item.GetComponent<NavMeshPractice>().enabled = false;
+                item.GetComponent<NavMeshPractice>().DisableAgent();
             }
 
             if(Controller.holdObj.GetComponent<Rigidbody>() != null)
@@ -67,8 +66,7 @@ public class PlayerManager : MonoBehaviour
 
         if (Controller.holdObj.tag == "child")
         {
-            Controller.holdObj.GetComponent<NavMeshAgent>().enabled = true;
-            Controller.holdObj.GetComponent<NavMeshPractice>().enabled = true;
+            Controller.holdObj.GetComponent<NavMeshPractice>().EnableAgent();
 
             rigid.useGravity = false;
             rigid.isKinematic = true;

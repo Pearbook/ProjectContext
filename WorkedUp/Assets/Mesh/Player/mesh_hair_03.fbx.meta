@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: b251f51f39499e2459a0fda923097ca8
+guid: 98d87889540a5ed4e9e23c6d24d919b2
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 02 - Default
+    2100000: mat_skin
+    2100002: lambert4
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Lamp
+    4300000: mesh_hair03
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -60,7 +61,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:

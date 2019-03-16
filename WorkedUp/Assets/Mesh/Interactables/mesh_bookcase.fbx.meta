@@ -1,14 +1,51 @@
 fileFormatVersion: 2
-guid: b251f51f39499e2459a0fda923097ca8
+guid: 4a45acf7fe1c7ca4cb9b7b50e05bcdc9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: 02 - Default
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Lamp
+    100000: mesh_bookBlue
+    100002: //RootNode
+    100004: mesh_bookcase
+    100006: mesh_bookPink
+    100008: mesh_bookRed
+    100010: mesh_bookYellow
+    100012: mesh_cactus
+    100014: mesh_plant
+    100016: mesh_bookGreen
+    400000: mesh_bookBlue
+    400002: //RootNode
+    400004: mesh_bookcase
+    400006: mesh_bookPink
+    400008: mesh_bookRed
+    400010: mesh_bookYellow
+    400012: mesh_cactus
+    400014: mesh_plant
+    400016: mesh_bookGreen
+    2100000: lambert2
+    2300000: mesh_bookBlue
+    2300002: mesh_bookcase
+    2300004: mesh_bookPink
+    2300006: mesh_bookRed
+    2300008: mesh_bookYellow
+    2300010: mesh_cactus
+    2300012: mesh_plant
+    2300014: mesh_bookGreen
+    3300000: mesh_bookBlue
+    3300002: mesh_bookcase
+    3300004: mesh_bookPink
+    3300006: mesh_bookRed
+    3300008: mesh_bookYellow
+    3300010: mesh_cactus
+    3300012: mesh_plant
+    3300014: mesh_bookGreen
+    4300000: mesh_bookcase
+    4300002: mesh_plant
+    4300004: mesh_cactus
+    4300006: mesh_bookRed
+    4300008: mesh_bookBlue
+    4300010: mesh_bookYellow
+    4300012: mesh_bookPink
+    4300014: mesh_bookGreen
   externalObjects: {}
   materials:
     importMaterials: 0
@@ -60,7 +97,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     previousCalculatedGlobalScale: 1
     hasPreviousCalculatedGlobalScale: 0
   tangentSpace:

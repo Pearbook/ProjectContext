@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3221,6 +3221,7 @@ MonoBehaviour:
   AllHair:
   - {fileID: 9047249235111351773, guid: f266003a178fdfd49ae9c2a251e3a74d, type: 3}
   - {fileID: 187278837825994360, guid: 0aab5395870d3c941b176191e458725a, type: 3}
+  - {fileID: 1323760159785666104, guid: b4dae04664b53834b8626bc70f237423, type: 3}
   HairIndex: 0
   currentHairColor: {r: 0, g: 0, b: 0, a: 0}
   FacePivot: {fileID: 2007049363}

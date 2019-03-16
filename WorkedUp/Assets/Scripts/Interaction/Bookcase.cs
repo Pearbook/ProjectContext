@@ -14,12 +14,13 @@ public class Bookcase : MonoBehaviour
     [Header("Properties")]
     public GameObject BookSlotContainer;
     public List<GameObject> AllBookSlots;
+    public GameObject BookPrefab;
     private int slotIndex;
 
     [Header("Particle Effect")]
     public ParticleSystem SmokePuff;
 
-    [Header ("Other")]
+    [Header("Other")]
     public PingPongScale Scale;
 
     [Header("Score")]
@@ -39,6 +40,7 @@ public class Bookcase : MonoBehaviour
                     InstructionGroup.alpha = 0;
             }
         }
+
     }
 
     public void AddToBookcase()
@@ -64,6 +66,28 @@ public class Bookcase : MonoBehaviour
 
         if (!SmokePuff.isPlaying)
             SmokePuff.Play();
+
+        if (Scale != null)
+            Scale.PingPong();
+    }
+
+    public void EmptyBookcase()
+    {
+        if (slotIndex > 0)
+        {
+            for (int i = 0; i < slotIndex; ++i)
+            {
+                GameObject child = BookSlotContainer.transform.GetChild(i).gameObject;
+                GameObject book = (GameObject)Instantiate(BookPrefab, new Vector3(child.transform.position.x, child.transform.position.y, child.transform.position.z), Quaternion.identity);
+
+                // REMOVE SCORE
+                GameplayManager.Gameplay.AddScore(-ScorePerBook);
+
+                Destroy(child);
+            }
+
+            slotIndex = 0;
+        }
 
         if (Scale != null)
             Scale.PingPong();

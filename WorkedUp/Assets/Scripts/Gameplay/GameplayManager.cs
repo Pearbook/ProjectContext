@@ -25,9 +25,10 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    [Header ("Timer")]
-    [Tooltip("Time in seconds.")]
-    public float TimerLimit;
+    [Header("Timer")]
+    [Tooltip("Time in minutes.")]
+    public int TimeLimitMinutes;
+    private float TimerLimit;
 
     private float timer;
     private float seconds;
@@ -43,6 +44,11 @@ public class GameplayManager : MonoBehaviour
 
     public List<Range> AllRange;
 
+    private void Start()
+    {
+        TimerLimit = TimeLimitMinutes * 60;
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.K))
@@ -50,7 +56,7 @@ public class GameplayManager : MonoBehaviour
             CheckLevelForObjects();
         }
 
-        if (seconds >= TimerLimit)
+        if (timer >= TimerLimit)
         {
             // END THE GAME
             EndGame();
@@ -62,6 +68,11 @@ public class GameplayManager : MonoBehaviour
         
         if(AllRange.Count == 0)
             PlayerManager.Player.Controller.ObjectInRange = null;
+    }
+
+    public float GetCurrentGameplayTime()
+    {
+        return timer;
     }
 
     public void AddScore(int amount)
