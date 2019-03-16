@@ -10,6 +10,7 @@ public class InteractableObject : MonoBehaviour
     public TrashCan TrashcanBehaviour;
     public DinnerTable DinnerTableBehaviour;
     public LaundryBasket BasketBehaviour;
+    public Microwave MicrowaveBehaviour;
     public MobilePhone MobileBehaviour;
 
     public void Interact()
@@ -31,6 +32,9 @@ public class InteractableObject : MonoBehaviour
 
         if (BasketBehaviour != null)
             BasketBehaviour.Interaction();
+
+        if (MicrowaveBehaviour != null)
+            MicrowaveBehaviour.Interaction();
 
         if (MobileBehaviour != null)
             MobileBehaviour.Interaction();

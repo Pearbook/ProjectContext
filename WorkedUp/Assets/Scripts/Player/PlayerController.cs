@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public bool isDisabled = false;
     [HideInInspector]
     public GameObject holdObj;
+    private bool isHolding;
 
     void Update()
     {
@@ -61,10 +62,23 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-
-                if(ObjectInRange != null)
+                if (isHolding)
                 {
-                    ObjectInRange.Interact();
+                    if (holdObj != null && ObjectInRange == null)
+                    {
+                        Drop();
+                    }
+                }
+
+                if (ObjectInRange == null)
+                {
+                    if (CheckForObject() != null)
+                    {
+                        if (holdObj == null)
+                            PickUp();
+                        //else
+                            //Drop();
+                    }
                 }
                 else
                 {
@@ -72,10 +86,13 @@ public class PlayerController : MonoBehaviour
                     {
                         if (holdObj == null)
                             PickUp();
-                        else
-                            Drop();
+                    }
+                    else
+                    {
+                        ObjectInRange.Interact();
                     }
                 }
+
                 /*
                 if (CheckForObject() != null)
                 {
@@ -133,6 +150,8 @@ public class PlayerController : MonoBehaviour
     void PickUp()
     {
         PlayerManager.Player.GiveHoldItem(CheckForObject().gameObject, false);
+
+        isHolding = true;
     }
 
     void Drop()
@@ -140,6 +159,8 @@ public class PlayerController : MonoBehaviour
         holdObj.transform.parent = null;
 
         PlayerManager.Player.DropHoldItem(ThrowForce, ThrowSpin);
+
+        isHolding = false;
     }
 
     Collider CheckForObject()

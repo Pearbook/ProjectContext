@@ -41,6 +41,9 @@ public class WashingMachine : MonoBehaviour
     public GameObject SpotContainer;
     public List<GameObject> AllSpots;
 
+    [Header("Score")]
+    public int ScorePerClothing;
+
     [Header("Other")]
     public PingPongScale Scale;
 
@@ -126,6 +129,9 @@ public class WashingMachine : MonoBehaviour
         currentItemCount++;
 
         InstructionGroup.alpha = 0;
+
+        // ADD SCORE
+        GameplayManager.Gameplay.AddScore(ScorePerClothing);
 
         if (Scale != null)
             Scale.PingPong();

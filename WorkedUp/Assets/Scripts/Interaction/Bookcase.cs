@@ -16,7 +16,14 @@ public class Bookcase : MonoBehaviour
     public List<GameObject> AllBookSlots;
     private int slotIndex;
 
+    [Header("Particle Effect")]
+    public ParticleSystem SmokePuff;
+
+    [Header ("Other")]
     public PingPongScale Scale;
+
+    [Header("Score")]
+    public int ScorePerBook;
 
     private void Update()
     {
@@ -51,6 +58,12 @@ public class Bookcase : MonoBehaviour
         }
 
         InstructionGroup.alpha = 0;
+
+        // ADD SCORE
+        GameplayManager.Gameplay.AddScore(ScorePerBook);
+
+        if (!SmokePuff.isPlaying)
+            SmokePuff.Play();
 
         if (Scale != null)
             Scale.PingPong();

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LaundryBasket : MonoBehaviour
 {
+    [Header("Particle Effect")]
+    public ParticleSystem SmokePuff;
+
+    [Header("Score")]
+    public int ScorePerPile;
 
     [Header ("Other")]
     public PingPongScale Scale;
@@ -13,6 +18,12 @@ public class LaundryBasket : MonoBehaviour
         GameObject obj = PlayerManager.Player.Controller.holdObj;
 
         PlayerManager.Player.RemoveHoldItem();
+
+        // ADD SCORE
+        GameplayManager.Gameplay.AddScore(ScorePerPile);
+
+        if (!SmokePuff.isPlaying)
+            SmokePuff.Play();
 
         if (Scale != null)
             Scale.PingPong();

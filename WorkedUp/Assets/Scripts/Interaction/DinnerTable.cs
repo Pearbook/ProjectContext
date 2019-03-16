@@ -17,6 +17,9 @@ public class DinnerTable : MonoBehaviour
     [Header("Particle Effect")]
     public GameObject SmokeEffect;
 
+    [Header("Score")]
+    public int ScoreWhenDone;
+
     [Header ("Other")]
     public PingPongScale Scale;
 
@@ -34,6 +37,9 @@ public class DinnerTable : MonoBehaviour
 
         obj.transform.localEulerAngles = Vector3.zero;
         obj.transform.localPosition = Vector3.zero;
+
+        // ADD SCORE
+        GameplayManager.Gameplay.AddScore(ScoreWhenDone);
 
         if (Scale != null)
             Scale.PingPong();
