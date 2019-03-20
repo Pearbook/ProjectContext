@@ -94,4 +94,10 @@ public class PlayerManager : MonoBehaviour
         Controller.PlayerRigid.velocity = Vector3.zero;
     }
 
+    public void EnablePlayer()
+    {
+        Controller.allowMovement = true;
+        Controller.isDisabled = false;
+    }
+
 }

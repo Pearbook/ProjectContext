@@ -29,7 +29,7 @@ public class NavMeshPractice : MonoBehaviour
     {
         if (!isDisabled)
         {
-            Agent.destination = AllDestinations[destinationIndex].position;
+            Agent.destination = new Vector3(AllDestinations[destinationIndex].position.x, AllDestinations[destinationIndex].position.y, AllDestinations[destinationIndex].position.z - 1);
 
 
             if (Vector3.Distance(transform.position, AllDestinations[destinationIndex].position) <= 2)
