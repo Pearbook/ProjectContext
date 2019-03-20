@@ -12,6 +12,7 @@ public class InteractableObject : MonoBehaviour
     public LaundryBasket BasketBehaviour;
     public Microwave MicrowaveBehaviour;
     public BabyBed BabyBedBehaviour;
+    public Couch CouchBehaviour;
     public MobilePhone MobileBehaviour;
 
     public void Interact()
@@ -42,6 +43,9 @@ public class InteractableObject : MonoBehaviour
 
         if (MobileBehaviour != null)
             MobileBehaviour.Interaction();
+
+        if (CouchBehaviour != null)
+            CouchBehaviour.Interaction();
 
     }
 

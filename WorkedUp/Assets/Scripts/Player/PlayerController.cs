@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     public float MovementSpeed;
+    public float SpeedModifier = 1;
 
     public float TurnSpeed;
     public bool ignoreY;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction")]
     public LayerMask InteractMask;
     public InteractableObject ObjectInRange;
+    public bool AllowPickup = true;
 
     [HideInInspector]
     public bool isInteracting, interactOnce;
@@ -40,7 +42,6 @@ public class PlayerController : MonoBehaviour
     public bool isDisabled = false;
     [HideInInspector]
     public GameObject holdObj;
-    private bool isHolding;
 
     void Update()
     {
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         if(allowMovement)
-            PlayerRigid.velocity = new Vector3(InputAxis.x * MovementSpeed, PlayerRigid.velocity.y, InputAxis.y * MovementSpeed);
+            PlayerRigid.velocity = new Vector3(InputAxis.x * MovementSpeed * SpeedModifier, PlayerRigid.velocity.y, InputAxis.y * MovementSpeed * SpeedModifier);
     }
 
     void PlayerAction()
@@ -96,8 +97,11 @@ public class PlayerController : MonoBehaviour
         {
             if (holdObj == null)
             {
-                PickUp();
-                return;
+                if (AllowPickup)
+                {
+                    PickUp();
+                    return;
+                }
             }
         }
 
@@ -114,17 +118,13 @@ public class PlayerController : MonoBehaviour
     void PickUp()
     {
         PlayerManager.Player.GiveHoldItem(CheckForObject().gameObject, false);
-
-        isHolding = true;
     }
 
-    void Drop()
+    public void Drop()
     {
         holdObj.transform.parent = null;
 
         PlayerManager.Player.DropHoldItem(ThrowForce, ThrowSpin);
-
-        isHolding = false;
     }
 
     Collider CheckForObject()

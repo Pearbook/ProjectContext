@@ -154,8 +154,6 @@ public class CookingPot : MonoBehaviour
         PotObject.gameObject.SetActive(false);
         Checkmark.alpha = 0;
 
-        PlayerManager.Player.Stats.DecreaseMotivation(10);
-
         PlayerManager.Player.GiveHoldItem(PrefabToSpawn, true);
         isDisabled = true;
     }
