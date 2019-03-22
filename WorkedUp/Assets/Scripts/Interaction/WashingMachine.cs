@@ -77,6 +77,8 @@ public class WashingMachine : MonoBehaviour
                 {
                     isTimerDone = true;
 
+                    UserInterfaceManager.UI.ActivateCheckmark(2);
+
                     seconds = 0;
                     timer = 0;
                 }

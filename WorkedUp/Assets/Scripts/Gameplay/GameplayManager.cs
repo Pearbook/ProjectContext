@@ -44,6 +44,9 @@ public class GameplayManager : MonoBehaviour
 
     public List<Range> AllRange;
 
+    [Header("Bookcase")]
+    public List<GameObject> AllBooks;
+
     private void Start()
     {
         TimerLimit = TimeLimitMinutes * 60;
@@ -68,6 +71,12 @@ public class GameplayManager : MonoBehaviour
         
         if(AllRange.Count == 0)
             PlayerManager.Player.Controller.ObjectInRange = null;
+
+        if (AllBooks.Count == 0)
+            UserInterfaceManager.UI.ActivateCheckmark(4);
+        else
+            UserInterfaceManager.UI.DisableCheckmark(4);
+
     }
 
     public float GetCurrentGameplayTime()

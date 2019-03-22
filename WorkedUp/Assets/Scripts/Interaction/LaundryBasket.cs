@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaundryBasket : MonoBehaviour
 {
     public GameObject LaundryPrefab;
+    public int LaundryTotal = 2;
 
     [Header("Particle Effect")]
     public ParticleSystem SmokePuff;
@@ -26,6 +27,9 @@ public class LaundryBasket : MonoBehaviour
 
         // ADD SCORE
         GameplayManager.Gameplay.AddScore(ScorePerPile);
+
+        if (index == LaundryTotal)
+            UserInterfaceManager.UI.ActivateCheckmark(3);
 
         if (!SmokePuff.isPlaying)
             SmokePuff.Play();
@@ -50,7 +54,7 @@ public class LaundryBasket : MonoBehaviour
     {
         if(index > 0)
         {
-            for(int i = 0; i < index; ++i)
+            for(int i = 0; i < LaundryTotal; ++i)
             {
                 GameObject obj = (GameObject)Instantiate(LaundryPrefab, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z - 0.5f), Quaternion.identity);
                 obj.AddComponent<Rigidbody>();
@@ -62,6 +66,8 @@ public class LaundryBasket : MonoBehaviour
                 GameplayManager.Gameplay.AddScore(-ScorePerPile);
             }
         }
+
+        UserInterfaceManager.UI.DisableCheckmark(3);
 
         if (Scale != null)
             Scale.PingPong();

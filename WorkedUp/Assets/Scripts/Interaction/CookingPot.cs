@@ -124,6 +124,8 @@ public class CookingPot : MonoBehaviour
             {
                 cookingDone = true;
                 Checkmark.alpha = 1;
+
+                UserInterfaceManager.UI.ActivateCheckmark(0);
             }
         }
         else

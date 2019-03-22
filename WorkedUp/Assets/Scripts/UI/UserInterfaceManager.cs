@@ -34,6 +34,19 @@ public class UserInterfaceManager : MonoBehaviour
     public Text ScoreDisplay;
     public GameObject StarContainer;
 
+    [Header("Tasklist")]
+    public List<GameObject> Checkmarks;
+
+    public void ActivateCheckmark(int index)
+    {
+        Checkmarks[index].SetActive(true);
+    }
+
+    public void DisableCheckmark(int index)
+    {
+        Checkmarks[index].SetActive(false);
+    }
+
     public void DisplayScoreScreen()
     {
         MotivationGroup.alpha = 0;

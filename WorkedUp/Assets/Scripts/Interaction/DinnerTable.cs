@@ -46,6 +46,8 @@ public class DinnerTable : MonoBehaviour
 
         isSet = true;
 
+        UserInterfaceManager.UI.ActivateCheckmark(1);
+
         SmokeEffect.SetActive(true);
     }
 
