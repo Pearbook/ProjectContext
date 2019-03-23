@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: ff6d4e552b8049d4caa5a788c52fb7c6
-=======
-guid: 30563f7592e4ac3448153db8364ae547
->>>>>>> 9b189b8547a39da79da69eb3c0e5f17be349212a
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -13,6 +9,7 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: mesh_wallClose
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -65,8 +62,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -93,7 +90,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

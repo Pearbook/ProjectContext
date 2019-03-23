@@ -59,18 +59,6 @@ public class MobilePhone : MonoBehaviour
 
                         MobileManager.Mobile.ClosePhone();
                     }
-                    /*
-                    transform.parent = null;
-
-                    StartCoroutine(MoveToPosition(transform, startPos, TimeToMove));
-                    StartCoroutine(ScaleToSize(transform, startScale, TimeToMove));
-                    StartCoroutine(RotateTo(transform, startRot, TimeToMove));
-
-                    transform.gameObject.GetComponent<BoxCollider>().enabled = true;
-                    SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
-
-                    MobileManager.Mobile.ClosePhone();
-                    */
                 }
             }
         }
