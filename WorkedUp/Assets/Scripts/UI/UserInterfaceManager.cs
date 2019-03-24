@@ -34,10 +34,45 @@ public class UserInterfaceManager : MonoBehaviour
     public Text ScoreDisplay;
     public GameObject StarContainer;
 
+    [Header("Tasklist")]
+    public List<GameObject> Checkmarks;
+    public Animator TasklistAnimator;
+    private bool isOpen;
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if(!isOpen)
+            {
+                isOpen = true;
+
+                TasklistAnimator.SetBool("Open", true);
+            }
+            else
+            {
+                isOpen = false;
+
+                TasklistAnimator.SetBool("Open", false);
+            }
+        }
+    }
+
+    public void ActivateCheckmark(int index)
+    {
+        Checkmarks[index].SetActive(true);
+    }
+
+    public void DisableCheckmark(int index)
+    {
+        Checkmarks[index].SetActive(false);
+    }
+
     public void DisplayScoreScreen()
     {
         MotivationGroup.alpha = 0;
         ScoreGroup.alpha = 1;
+        ScoreGroup.interactable = true;
 
         StarContainer.SetActive(true);
         ScoreDisplay.text = PlayerManager.Player.Stats.Score.ToString();

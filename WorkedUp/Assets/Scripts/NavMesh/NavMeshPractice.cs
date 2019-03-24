@@ -50,7 +50,7 @@ public class NavMeshPractice : MonoBehaviour
 
                     isMakingMess = false;
 
-                    destinationIndex = Random.Range(0, AllDestinations.Count - 1);
+                    destinationIndex = Random.Range(0, AllDestinations.Count);
 
                 }
                 else

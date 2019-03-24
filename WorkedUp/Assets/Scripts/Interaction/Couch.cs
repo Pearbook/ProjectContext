@@ -6,6 +6,8 @@ public class Couch : MonoBehaviour
 {
     public GameObject PlayerContainer;
 
+    public Range MyRange;
+
     private bool isOccupied;
 
     // Disable player control
@@ -16,7 +18,7 @@ public class Couch : MonoBehaviour
 
     private void Update()
     {
-        if(isOccupied)
+        if(isOccupied && MyRange.isInRange)
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 ReleasePlayer();

@@ -64,6 +64,10 @@ public class Bookcase : MonoBehaviour
         // ADD SCORE
         GameplayManager.Gameplay.AddScore(ScorePerBook);
 
+        // REMOVE BOOK FROM LIST
+        if (GameplayManager.Gameplay.AllBooks.Contains(obj))
+            GameplayManager.Gameplay.AllBooks.Remove(obj);
+
         if (!SmokePuff.isPlaying)
             SmokePuff.Play();
 
@@ -79,6 +83,9 @@ public class Bookcase : MonoBehaviour
             {
                 GameObject child = BookSlotContainer.transform.GetChild(i).gameObject;
                 GameObject book = (GameObject)Instantiate(BookPrefab, new Vector3(child.transform.position.x, child.transform.position.y, child.transform.position.z), Quaternion.identity);
+
+                // ADD BOOKS TO LIST
+                GameplayManager.Gameplay.AllBooks.Add(book);
 
                 // REMOVE SCORE
                 GameplayManager.Gameplay.AddScore(-ScorePerBook);

@@ -29,6 +29,40 @@ public class PlayerManager : MonoBehaviour
     public PlayerController Controller;
     public PlayerStatus Stats;
 
+    [Header("Indication")]
+    public List<GameObject> CouchIndicators;
+
+
+    private void Update()
+    {
+        if(Stats.CurrentPlayerMotivation < Stats.MaxPlayerMotivation/2)
+        {
+            if (!Stats.IsResting)
+            {
+                foreach (GameObject obj in CouchIndicators)
+                {
+                    obj.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (GameObject obj in CouchIndicators)
+                {
+                    obj.SetActive(false);
+                }
+            }
+
+        }
+        else
+        {
+            foreach (GameObject obj in CouchIndicators)
+            {
+                obj.SetActive(false);
+            }
+        }
+
+    }
+
     public void GiveHoldItem(GameObject item, bool isPrefab)
     {
         if (isPrefab)

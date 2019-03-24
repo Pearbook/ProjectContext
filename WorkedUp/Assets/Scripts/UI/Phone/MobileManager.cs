@@ -27,6 +27,15 @@ public class MobileManager : MonoBehaviour
 
     public MobilePhone Phone;
 
+    [Header("Timer")]
+    public float TimerLimit;
+
+    private float timer;
+    private float seconds;
+
+    [HideInInspector]
+    public bool isOpen;
+
     [Header("UI")]
     public GameObject MessageBarPrefab;
     public GameObject CommentBarPrefab;
@@ -42,21 +51,45 @@ public class MobileManager : MonoBehaviour
     private int messageIndex;
     private int commentIndex;
     private int phoneIndex;
-    private bool hasComment;
+
+    [HideInInspector]
+    public bool hasComment;
 
     private void Update()
     {
-        // TIJDELIJK
-        if(Input.GetKeyDown(KeyCode.J))
+        if(timer >= TimerLimit)
         {
-            AddMessageToPhone(false);
+            if (!isOpen)
+            {
+                if (phoneIndex < AllComments.Count + AllScriptables.Count)
+                {
+                    isOpen = true;
+
+                    // Disable Player
+                    PlayerManager.Player.DisablePlayer();
+
+                    // Stop game
+                    //Time.timeScale = 0;
+
+                    AddMessageToPhone(false);
+                    Phone.TogglePhone();
+                }
+            }
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        else
         {
-            if(messageIndex > 0 && !hasComment)
-                AddMessageToPhone(true);
+            UpdateTimer();
         }
 
+    }
+
+    public void ClosePhone()
+    {
+        isOpen = false;
+        timer = 0;
+        seconds = 0;
+
+        PlayerManager.Player.EnablePlayer();
     }
 
     public void AddMessageToPhone(bool isComment)
@@ -132,5 +165,11 @@ public class MobileManager : MonoBehaviour
     {
         NotificationGroup.alpha = 0;
     }
-    
+
+    public void UpdateTimer()
+    {
+        timer += Time.deltaTime;
+        seconds = timer % 60;
+    }
+
 }
