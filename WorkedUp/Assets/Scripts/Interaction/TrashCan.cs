@@ -21,6 +21,8 @@ public class TrashCan : MonoBehaviour
     [Header ("UI")]
     public CanvasGroup InstructionGroup;
 
+    public GameObject MIEM;
+
     private void Update()
     {
         dist = Vector3.Distance(transform.position, PlayerManager.Player.PlayerObject.transform.position);
@@ -51,6 +53,9 @@ public class TrashCan : MonoBehaviour
 
     void AddToTrashCan()
     {
+        if (playerObj.tag == "child")
+            MIEM.SetActive(true);
+
         playerObj.transform.parent = transform;
         playerObj.transform.position = transform.position;
         playerObj.SetActive(false);

@@ -41,20 +41,30 @@ public class MobilePhone : MonoBehaviour
             {
                 if (isOpen)
                 {
-                    transform.parent = null;
+                    if (!MobileManager.Mobile.hasComment)
+                    {
+                        // SEND COMMENT
+                        MobileManager.Mobile.AddMessageToPhone(true);
+                    }
+                    else
+                    {
+                        transform.parent = null;
 
-                    StartCoroutine(MoveToPosition(transform, startPos, TimeToMove));
-                    StartCoroutine(ScaleToSize(transform, startScale, TimeToMove));
-                    StartCoroutine(RotateTo(transform, startRot, TimeToMove));
+                        StartCoroutine(MoveToPosition(transform, startPos, TimeToMove));
+                        StartCoroutine(ScaleToSize(transform, startScale, TimeToMove));
+                        StartCoroutine(RotateTo(transform, startRot, TimeToMove));
 
-                    transform.gameObject.GetComponent<BoxCollider>().enabled = true;
-                    SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
+                        transform.gameObject.GetComponent<BoxCollider>().enabled = true;
+                        SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
+
+                        MobileManager.Mobile.ClosePhone();
+                    }
                 }
             }
         }
     }
 
-    public void Interaction()
+    public void TogglePhone()
     {
         StopAllCoroutines();
 

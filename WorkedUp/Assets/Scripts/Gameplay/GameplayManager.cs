@@ -33,6 +33,7 @@ public class GameplayManager : MonoBehaviour
     private float timer;
     private float seconds;
 
+    private bool isHalfway;
     private bool gameHasEnded;
 
     [Header("Detection")]
@@ -43,6 +44,9 @@ public class GameplayManager : MonoBehaviour
     private List<GameObject> AllObjects;
 
     public List<Range> AllRange;
+
+    [Header("UI")]
+    public CanvasGroup TimeIndicator;
 
     [Header("Bookcase")]
     public List<GameObject> AllBooks;
@@ -67,6 +71,15 @@ public class GameplayManager : MonoBehaviour
         else
         {
             UpdateTimer();
+
+            if (!isHalfway)
+            {
+                if (timer >= TimerLimit / 2)
+                {
+                    isHalfway = true;
+                    StartCoroutine(IndicatorDisplayDelay());
+                }
+            }
         }
         
         if(AllRange.Count == 0)
@@ -136,6 +149,14 @@ public class GameplayManager : MonoBehaviour
     public void RemoveRange(Range myRange)
     {
         AllRange.Remove(myRange);
+    }
+
+    IEnumerator IndicatorDisplayDelay()
+    {
+        TimeIndicator.alpha = 1;
+        yield return new WaitForSeconds(3.0f);
+        TimeIndicator.alpha = 0;
+
     }
 
     private void OnDrawGizmos()

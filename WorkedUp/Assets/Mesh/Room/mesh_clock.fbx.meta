@@ -1,18 +1,24 @@
 fileFormatVersion: 2
-guid: ff6d4e552b8049d4caa5a788c52fb7c6
+guid: 4ac5eeded4298d04285a08689db4f012
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: mesh_clock
+    100004: mesh_hand
     400000: //RootNode
+    400002: mesh_clock
+    400004: mesh_hand
     2100000: lambert1
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: mesh_wallClose
-    9500000: //RootNode
+    2300000: mesh_clock
+    2300002: mesh_hand
+    3300000: mesh_clock
+    3300002: mesh_hand
+    4300000: mesh_hand
+    4300002: mesh_clock
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -45,10 +51,10 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -61,9 +67,9 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -90,7 +96,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
