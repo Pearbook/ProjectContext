@@ -18,6 +18,8 @@ public class CookingPot : MonoBehaviour
     // Show checkmark icon
     // Interact to pickup pot
 
+    public int ScoreWhenBurned = -5;
+
     public bool isActive;
     private bool isDisabled;
     private bool cookingDone;
@@ -33,6 +35,7 @@ public class CookingPot : MonoBehaviour
     public GameObject BurnPotObject;
     public ParticleSystem SmokeParticle;
     public GameObject PrefabToSpawn;
+    public GameObject BurnedPrefab;
 
     [Header ("Timer")]
     public float TimerLimit;
@@ -119,6 +122,12 @@ public class CookingPot : MonoBehaviour
                     ProgressBar.fillAmount = Custom.ReturnFillAmount(seconds, BurnTimerLimit);
                 }
             }
+            
+            if (hasBurned)
+            {
+                PotObject.SetActive(false);
+                BurnPotObject.SetActive(true);
+            }
 
             if (interactionAmount >= InteractionLimit)
             {
@@ -133,30 +142,30 @@ public class CookingPot : MonoBehaviour
             BarGroup.alpha = 0;
             Warning.alpha = 0;
             InstructionGroup.alpha = 0;
-
-            if (hasBurned)
-            {
-                PotObject.SetActive(false);
-                BurnPotObject.SetActive(true);
-            }
         }
     }
 
     public void BurnFood()
     {
         waitForInteract = false;
-        isActive = false;
+        cookingDone = true;
         hasBurned = true;
 
-        isDisabled = true;
+        // REMOVE SCORE
+        GameplayManager.Gameplay.AddScore(ScoreWhenBurned);
     }
 
     public void FinalInteraction()
     {
         PotObject.gameObject.SetActive(false);
+        BurnPotObject.SetActive(false);
         Checkmark.alpha = 0;
 
-        PlayerManager.Player.GiveHoldItem(PrefabToSpawn, true);
+        if(!hasBurned)
+            PlayerManager.Player.GiveHoldItem(PrefabToSpawn, true);
+        else
+            PlayerManager.Player.GiveHoldItem(BurnedPrefab, true);
+
         isDisabled = true;
     }
 

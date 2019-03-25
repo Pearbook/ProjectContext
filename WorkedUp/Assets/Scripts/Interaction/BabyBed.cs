@@ -19,6 +19,9 @@ public class BabyBed : MonoBehaviour
 
         childObj.GetComponent<NavMeshPractice>().DisableAgent();
 
+        childObj.GetComponent<BabyBehaviour>().isInBed = true;
+        childObj.GetComponent<BabyBehaviour>().bedTransform = ChildContainer.transform;
+
         PlayerManager.Player.Controller.holdObj = null;
 
         if (Scale != null)

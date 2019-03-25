@@ -38,11 +38,22 @@ public class DinnerTable : MonoBehaviour
         obj.transform.localEulerAngles = Vector3.zero;
         obj.transform.localPosition = Vector3.zero;
 
-        // ERROR INDICATOR
-        UserInterfaceManager.UI.SpawnErrorIndicator(transform, true);
+        if(obj.GetComponent<PickUpProperties>() != null)
+        {
+            if(!obj.GetComponent<PickUpProperties>().isBurned)
+            {
+                // ERROR INDICATOR
+                UserInterfaceManager.UI.SpawnErrorIndicator(transform, true);
 
-        // ADD SCORE
-        GameplayManager.Gameplay.AddScore(ScoreWhenDone);
+                // ADD SCORE
+                GameplayManager.Gameplay.AddScore(ScoreWhenDone);
+            }
+            else
+            {
+                // ERROR INDICATOR
+                UserInterfaceManager.UI.SpawnErrorIndicator(transform, false);
+            }
+        }
 
         if (Scale != null)
             Scale.PingPong();

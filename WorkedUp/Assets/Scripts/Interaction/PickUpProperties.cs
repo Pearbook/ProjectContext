@@ -8,4 +8,7 @@ public class PickUpProperties : MonoBehaviour
 
     [Header("Laundry")]
     public bool isClean;
+
+    [Header("Cooking")]
+    public bool isBurned;
 }
