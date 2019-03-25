@@ -43,6 +43,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public GameObject holdObj;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     void Update()
     {
         if (!isDisabled)

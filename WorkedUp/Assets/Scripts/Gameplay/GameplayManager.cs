@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class GameplayManager : MonoBehaviour
 
     [Header("UI")]
     public CanvasGroup TimeIndicator;
+    public Text IndicatorText;
+    public Text IndicatorTextShade;
 
     [Header("Bookcase")]
     public List<GameObject> AllBooks;
@@ -60,7 +63,8 @@ public class GameplayManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K))
         {
-            CheckLevelForObjects();
+            seconds = 50;
+            timer = 50;
         }
 
         if (timer >= TimerLimit)
@@ -80,6 +84,39 @@ public class GameplayManager : MonoBehaviour
                     StartCoroutine(IndicatorDisplayDelay());
                 }
             }
+
+            if (timer >= TimerLimit - 5)
+            {
+                TimeIndicator.alpha = 1;
+
+                IndicatorText.text = "5";
+                IndicatorTextShade.text = "5";
+            }
+
+            if (timer >= TimerLimit - 4)
+            {
+                IndicatorText.text = "4";
+                IndicatorTextShade.text = "4";
+            }
+
+            if (timer >= TimerLimit - 3)
+            {
+                IndicatorText.text = "3";
+                IndicatorTextShade.text = "3";
+            }
+
+            if (timer >= TimerLimit - 2)
+            {
+                IndicatorText.text = "2";
+                IndicatorTextShade.text = "2";
+            }
+
+            if (timer >= TimerLimit - 1)
+            {
+                IndicatorText.text = "1";
+                IndicatorTextShade.text = "1";
+            }
+
         }
         
         if(AllRange.Count == 0)
@@ -131,6 +168,9 @@ public class GameplayManager : MonoBehaviour
         }
 
         PlayerManager.Player.Stats.Score -= AllObjects.Count;
+
+        if(PlayerManager.Player.Stats.Score < 0)
+                PlayerManager.Player.Stats.Score = 0;
     }
 
     Collider[] CheckForObjectsOnFloor()
