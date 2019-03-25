@@ -19,22 +19,7 @@ public class TrashCan : MonoBehaviour
     public ParticleSystem SmokePuff;
 
     [Header ("UI")]
-    public CanvasGroup InstructionGroup;
-
     public GameObject MIEM;
-
-    private void Update()
-    {
-        dist = Vector3.Distance(transform.position, PlayerManager.Player.PlayerObject.transform.position);
-
-        if (AllTrash.Count > 0)
-        {
-            if (dist < Range)
-                InstructionGroup.alpha = 1;
-            else
-                InstructionGroup.alpha = 0;
-        }
-    }
 
     public void Interaction()
     {
@@ -60,8 +45,16 @@ public class TrashCan : MonoBehaviour
         playerObj.transform.position = transform.position;
         playerObj.SetActive(false);
 
-        if(playerObj.GetComponent<PickUpProperties>() != null)
+        if (playerObj.GetComponent<PickUpProperties>() != null)
+        {
             GameplayManager.Gameplay.AddScore(playerObj.GetComponent<PickUpProperties>().PointsOnTrash);
+
+            if(playerObj.GetComponent<PickUpProperties>().PointsOnTrash < 0)
+                UserInterfaceManager.UI.SpawnErrorIndicator(transform, false);       // ERROR INDICATOR
+
+            if (playerObj.GetComponent<PickUpProperties>().PointsOnTrash >= 0)
+                UserInterfaceManager.UI.SpawnErrorIndicator(transform, true);       // ERROR INDICATOR
+        }
 
         AllTrash.Add(playerObj);
 
@@ -80,8 +73,6 @@ public class TrashCan : MonoBehaviour
         PlayerManager.Player.GiveHoldItem(AllTrash[AllTrash.Count - 1], false);
 
         AllTrash.RemoveAt(AllTrash.Count - 1);
-
-        InstructionGroup.alpha = 0;
 
         if (Scale != null)
             Scale.PingPong();

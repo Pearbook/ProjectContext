@@ -38,6 +38,9 @@ public class DinnerTable : MonoBehaviour
         obj.transform.localEulerAngles = Vector3.zero;
         obj.transform.localPosition = Vector3.zero;
 
+        // ERROR INDICATOR
+        UserInterfaceManager.UI.SpawnErrorIndicator(transform, true);
+
         // ADD SCORE
         GameplayManager.Gameplay.AddScore(ScoreWhenDone);
 

@@ -68,8 +68,6 @@ public class MobilePhone : MonoBehaviour
     {
         StopAllCoroutines();
 
-        print("DOE HET");
-
         if (!isMoving)
         {
             if (!isOpen)
@@ -86,6 +84,18 @@ public class MobilePhone : MonoBehaviour
                 MobileManager.Mobile.HideNotification();
             }
         }
+    }
+
+    public void ForceClose()
+    {
+        transform.parent = null;
+
+        StartCoroutine(MoveToPosition(transform, startPos, TimeToMove));
+        StartCoroutine(ScaleToSize(transform, startScale, TimeToMove));
+        StartCoroutine(RotateTo(transform, startRot, TimeToMove));
+
+        transform.gameObject.GetComponent<BoxCollider>().enabled = true;
+        SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
     }
 
     public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)

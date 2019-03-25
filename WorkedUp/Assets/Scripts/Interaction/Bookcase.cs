@@ -61,6 +61,9 @@ public class Bookcase : MonoBehaviour
 
         InstructionGroup.alpha = 0;
 
+        // ERROR INDICATOR
+        UserInterfaceManager.UI.SpawnErrorIndicator(transform, true);
+
         // ADD SCORE
         GameplayManager.Gameplay.AddScore(ScorePerBook);
 

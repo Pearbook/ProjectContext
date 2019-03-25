@@ -25,6 +25,9 @@ public class LaundryBasket : MonoBehaviour
 
         PlayerManager.Player.RemoveHoldItem();
 
+        // ERROR INDICATOR
+        UserInterfaceManager.UI.SpawnErrorIndicator(transform, true);
+
         // ADD SCORE
         GameplayManager.Gameplay.AddScore(ScorePerPile);
 
