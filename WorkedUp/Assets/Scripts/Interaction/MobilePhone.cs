@@ -57,6 +57,8 @@ public class MobilePhone : MonoBehaviour
                         transform.gameObject.GetComponent<BoxCollider>().enabled = true;
                         SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
 
+                        UserInterfaceManager.UI.DarkOverlay.alpha = 0;
+
                         MobileManager.Mobile.ClosePhone();
                     }
                 }
@@ -82,6 +84,8 @@ public class MobilePhone : MonoBehaviour
                 SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("UI"));
 
                 MobileManager.Mobile.HideNotification();
+
+                UserInterfaceManager.UI.DarkOverlay.alpha = 1;
             }
         }
     }
@@ -96,6 +100,8 @@ public class MobilePhone : MonoBehaviour
 
         transform.gameObject.GetComponent<BoxCollider>().enabled = true;
         SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
+
+        UserInterfaceManager.UI.DarkOverlay.alpha = 0;
     }
 
     public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)

@@ -35,12 +35,14 @@ public class UserInterfaceManager : MonoBehaviour
     public GameObject StarContainer;
     public List<GameObject> AllStars;
 
-
     [Header("Tasklist")]
     public CanvasGroup TasklistCanvas;
     public List<GameObject> Checkmarks;
     public Animator TasklistAnimator;
     private bool isOpen;
+
+    [Header("Overlay")]
+    public CanvasGroup DarkOverlay;
 
     private void Start()
     {

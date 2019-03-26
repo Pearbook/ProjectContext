@@ -8,6 +8,8 @@ public class PlayerVisuals : MonoBehaviour
     public GameObject FacePivot;
     public GameObject HairPivot;
 
+    public Animator MyAnimator;
+
     public void Start()
     {
         LoadFace();
@@ -18,6 +20,21 @@ public class PlayerVisuals : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
             PlayerPrefs.DeleteAll();
+
+        if (!PlayerManager.Player.Stats.IsResting)
+        {
+            if (PlayerManager.Player.Controller.holdObj != null)
+                MyAnimator.SetBool("IsHolding", true);
+
+            if (PlayerManager.Player.Controller.holdObj == null)
+                MyAnimator.SetBool("IsHolding", false);
+
+            MyAnimator.SetBool("IsSitting", false);
+        }
+        else
+        {
+            MyAnimator.SetBool("IsSitting", true);
+        }
     }
 
     public void LoadFace()

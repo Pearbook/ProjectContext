@@ -53,16 +53,7 @@ public class PlayerStatus : MonoBehaviour
         // BLOW 25% CANT CARRY STUFF
         if (CurrentPlayerMotivation < 25)
         {
-            PlayerManager.Player.Controller.AllowPickup = false;
-
-            if (PlayerManager.Player.Controller.holdObj != null)
-                PlayerManager.Player.Controller.Drop();
-
             MotivationBar.color = new Color32(219, 40, 40, 255);    //Red
-        }
-        else if (CurrentPlayerMotivation > 25)
-        {
-            PlayerManager.Player.Controller.AllowPickup = true;
         }
 
         if (!IsResting)
