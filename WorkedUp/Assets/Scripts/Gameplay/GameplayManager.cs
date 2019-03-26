@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class GameplayManager : MonoBehaviour
     private float timer;
     private float seconds;
 
+    private bool pauseTimer;
+
     private bool isHalfway;
     private bool gameHasEnded;
 
@@ -54,6 +57,12 @@ public class GameplayManager : MonoBehaviour
     [Header("Bookcase")]
     public List<GameObject> AllBooks;
 
+    [Header("AI")]
+    public NavMeshPractice Child;
+
+    [Header("Other")]
+    public bool isDisabled;
+
     private void Start()
     {
         TimerLimit = TimeLimitMinutes * 60;
@@ -61,10 +70,12 @@ public class GameplayManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            seconds = 50;
-            timer = 50;
+            SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         if (timer >= TimerLimit)
@@ -74,7 +85,8 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
-            UpdateTimer();
+            if(!pauseTimer)
+                UpdateTimer();
 
             if (!isHalfway)
             {
@@ -197,6 +209,25 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         TimeIndicator.alpha = 0;
 
+    }
+
+    public void DisableAllAction()
+    {
+        isDisabled = true;
+
+        pauseTimer = true;
+
+        Child.DisableAgent();
+    }
+
+    public void EnableAllAction()
+    {
+        isDisabled = false;
+
+        pauseTimer = false;
+        
+        if(!Child.gameObject.GetComponent<BabyBehaviour>().isInBed)
+            Child.EnableAgent();
     }
 
     private void OnDrawGizmos()

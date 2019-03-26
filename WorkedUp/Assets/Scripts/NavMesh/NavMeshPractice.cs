@@ -27,40 +27,43 @@ public class NavMeshPractice : MonoBehaviour
 
     void Update()
     {
-        if (!isDisabled)
+        if (!GameplayManager.Gameplay.isDisabled)
         {
-            Agent.destination = new Vector3(AllDestinations[destinationIndex].position.x, AllDestinations[destinationIndex].position.y, AllDestinations[destinationIndex].position.z - 1);
-
-
-            if (Vector3.Distance(transform.position, AllDestinations[destinationIndex].position) <= 2)
+            if (!isDisabled)
             {
-                if (!isMakingMess)
+                Agent.destination = new Vector3(AllDestinations[destinationIndex].position.x, AllDestinations[destinationIndex].position.y, AllDestinations[destinationIndex].position.z - 1);
+
+
+                if (Vector3.Distance(transform.position, AllDestinations[destinationIndex].position) <= 2)
                 {
-                    if (seconds >= TimerLimit / 2)
+                    if (!isMakingMess)
                     {
-                        isMakingMess = true;
-                        AllDestinations[destinationIndex].GetComponent<InteractableObject>().MakeMess();
+                        if (seconds >= TimerLimit / 2)
+                        {
+                            isMakingMess = true;
+                            AllDestinations[destinationIndex].GetComponent<InteractableObject>().MakeMess();
+                        }
                     }
+
+                    if (seconds >= TimerLimit)
+                    {
+                        seconds = 0;
+                        timer = 0;
+
+                        isMakingMess = false;
+
+                        destinationIndex = Random.Range(0, AllDestinations.Count);
+
+                    }
+                    else
+                    {
+                        UpdateTimer();
+                    }
+
                 }
 
-                if (seconds >= TimerLimit)
-                {
-                    seconds = 0;
-                    timer = 0;
-
-                    isMakingMess = false;
-
-                    destinationIndex = Random.Range(0, AllDestinations.Count);
-
-                }
-                else
-                {
-                    UpdateTimer();
-                }
-
+                ExtraRotation();
             }
-
-            ExtraRotation();
         }
     }
 

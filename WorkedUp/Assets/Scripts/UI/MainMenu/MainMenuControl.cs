@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainMenuControl : MonoBehaviour
 {
@@ -16,7 +17,12 @@ public class MainMenuControl : MonoBehaviour
 
     public void StartGame()
     {
+        SceneManager.LoadScene(1);
+    }
 
+    public void OpenCustomize()
+    {
+        SceneManager.LoadScene(2);
     }
 
     public void OpenMainMenu()

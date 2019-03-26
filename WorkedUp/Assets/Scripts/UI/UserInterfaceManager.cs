@@ -117,6 +117,8 @@ public class UserInterfaceManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        GameplayManager.Gameplay.DisableAllAction();
+
     }
 
     public void SpawnErrorIndicator(Transform target, bool goodOrBad)

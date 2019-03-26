@@ -28,45 +28,48 @@ public class PlayerStatus : MonoBehaviour
 
     private void Update()
     {
-        MotivationBar.fillAmount = Custom.ReturnFillAmount(CurrentPlayerMotivation, MaxPlayerMotivation);
-
-        // BELOW 50% SLOWER MOVEMENTSPEED
-        if (CurrentPlayerMotivation < 50)
+        if (!GameplayManager.Gameplay.isDisabled)
         {
-            PlayerManager.Player.Controller.SpeedModifier = 0.5f;
-            MotivationBar.color = new Color32(255, 216, 0, 255);    //Yellow
+            MotivationBar.fillAmount = Custom.ReturnFillAmount(CurrentPlayerMotivation, MaxPlayerMotivation);
 
-            //Play sweat particles
-            if (!SweatParticles.isPlaying)
-                SweatParticles.Play();
-        }
-        else if (CurrentPlayerMotivation > 50)
-        {
-            PlayerManager.Player.Controller.SpeedModifier = 1;
-            MotivationBar.color = new Color32(89, 187, 69, 255);    //Green
+            // BELOW 50% SLOWER MOVEMENTSPEED
+            if (CurrentPlayerMotivation < 50)
+            {
+                PlayerManager.Player.Controller.SpeedModifier = 0.5f;
+                MotivationBar.color = new Color32(255, 216, 0, 255);    //Yellow
 
-            //Stop sweat particles
-            if (SweatParticles.isPlaying)
-                SweatParticles.Stop();
-        }
+                //Play sweat particles
+                if (!SweatParticles.isPlaying)
+                    SweatParticles.Play();
+            }
+            else if (CurrentPlayerMotivation > 50)
+            {
+                PlayerManager.Player.Controller.SpeedModifier = 1;
+                MotivationBar.color = new Color32(89, 187, 69, 255);    //Green
 
-        // BLOW 25% CANT CARRY STUFF
-        if (CurrentPlayerMotivation < 25)
-        {
-            MotivationBar.color = new Color32(219, 40, 40, 255);    //Red
-        }
+                //Stop sweat particles
+                if (SweatParticles.isPlaying)
+                    SweatParticles.Stop();
+            }
 
-        if (!IsResting)
-        {
-            if (CurrentPlayerMotivation <= 0)
-                CurrentPlayerMotivation = 0;
+            // BLOW 25% CANT CARRY STUFF
+            if (CurrentPlayerMotivation < 25)
+            {
+                MotivationBar.color = new Color32(219, 40, 40, 255);    //Red
+            }
+
+            if (!IsResting)
+            {
+                if (CurrentPlayerMotivation <= 0)
+                    CurrentPlayerMotivation = 0;
+                else
+                    DecreaseEnergy();
+            }
             else
-                DecreaseEnergy();
-        }
-        else
-        {
-            if (CurrentPlayerMotivation <= MaxPlayerMotivation)
-                IncreaseEnergy();
+            {
+                if (CurrentPlayerMotivation <= MaxPlayerMotivation)
+                    IncreaseEnergy();
+            }
         }
     }
 

@@ -59,89 +59,92 @@ public class CookingPot : MonoBehaviour
 
     public void Update()
     {
-        if (!isDisabled)
+        if (!GameplayManager.Gameplay.isDisabled)
         {
-            dist = Vector3.Distance(transform.position, PlayerManager.Player.PlayerObject.transform.position);
-
-            if (dist < Range)
-                InstructionGroup.alpha = 1;
-            else
-                InstructionGroup.alpha = 0;
-
-            if (!waitForInteract)
+            if (!isDisabled)
             {
-                Warning.alpha = 0;
-                BarGroup.alpha = 0;
+                dist = Vector3.Distance(transform.position, PlayerManager.Player.PlayerObject.transform.position);
 
-                if (isActive)
-                {
-                    if (!SmokeParticle.isPlaying)
-                        SmokeParticle.Play();
-                }
-                
-                if (seconds >= TimerLimit)
-                {
-                    seconds = 0;
-                    timer = 0;
-
-                    waitForInteract = true;
-                }
+                if (dist < Range)
+                    InstructionGroup.alpha = 1;
                 else
+                    InstructionGroup.alpha = 0;
+
+                if (!waitForInteract)
                 {
+                    Warning.alpha = 0;
+                    BarGroup.alpha = 0;
+
                     if (isActive)
                     {
-                        UpdateTimer();
-                        InstructionGroup.alpha = 0;
+                        if (!SmokeParticle.isPlaying)
+                            SmokeParticle.Play();
                     }
-                }
-            }
-            else
-            {
-                if (!cookingDone)
-                {
-                    if (SmokeParticle.isPlaying)
-                        SmokeParticle.Stop();
 
-                    if (seconds >= BurnTimerLimit)
+                    if (seconds >= TimerLimit)
                     {
                         seconds = 0;
                         timer = 0;
 
-                        BurnFood();
+                        waitForInteract = true;
                     }
                     else
                     {
                         if (isActive)
+                        {
                             UpdateTimer();
+                            InstructionGroup.alpha = 0;
+                        }
                     }
+                }
+                else
+                {
+                    if (!cookingDone)
+                    {
+                        if (SmokeParticle.isPlaying)
+                            SmokeParticle.Stop();
 
-                    BarGroup.alpha = 1;
+                        if (seconds >= BurnTimerLimit)
+                        {
+                            seconds = 0;
+                            timer = 0;
 
-                    Warning.alpha = 1;
-                    ProgressBar.color = new Color32(219, 40, 40, 255);
-                    ProgressBar.fillAmount = Custom.ReturnFillAmount(seconds, BurnTimerLimit);
+                            BurnFood();
+                        }
+                        else
+                        {
+                            if (isActive)
+                                UpdateTimer();
+                        }
+
+                        BarGroup.alpha = 1;
+
+                        Warning.alpha = 1;
+                        ProgressBar.color = new Color32(219, 40, 40, 255);
+                        ProgressBar.fillAmount = Custom.ReturnFillAmount(seconds, BurnTimerLimit);
+                    }
+                }
+
+                if (hasBurned)
+                {
+                    PotObject.SetActive(false);
+                    BurnPotObject.SetActive(true);
+                }
+
+                if (interactionAmount >= InteractionLimit)
+                {
+                    cookingDone = true;
+                    Checkmark.alpha = 1;
+
+                    UserInterfaceManager.UI.ActivateCheckmark(0);
                 }
             }
-            
-            if (hasBurned)
+            else
             {
-                PotObject.SetActive(false);
-                BurnPotObject.SetActive(true);
+                BarGroup.alpha = 0;
+                Warning.alpha = 0;
+                InstructionGroup.alpha = 0;
             }
-
-            if (interactionAmount >= InteractionLimit)
-            {
-                cookingDone = true;
-                Checkmark.alpha = 1;
-
-                UserInterfaceManager.UI.ActivateCheckmark(0);
-            }
-        }
-        else
-        {
-            BarGroup.alpha = 0;
-            Warning.alpha = 0;
-            InstructionGroup.alpha = 0;
         }
     }
 

@@ -54,64 +54,67 @@ public class WashingMachine : MonoBehaviour
 
     public void Update()
     {
-        dist = Vector3.Distance(transform.position, PlayerManager.Player.PlayerObject.transform.position);
-
-        if (PlayerManager.Player.Controller.holdObj != null)
+        if (!GameplayManager.Gameplay.isDisabled)
         {
-            if (PlayerManager.Player.Controller.holdObj.tag == "laundry")
-            {
-                if (dist < Range)
-                    InstructionGroup.alpha = 1;
-                else
-                    InstructionGroup.alpha = 0;
-            }
-        }
+            dist = Vector3.Distance(transform.position, PlayerManager.Player.PlayerObject.transform.position);
 
-        if (currentItemCount == ItemLimit)
-        {
-            if (!isTimerDone)
+            if (PlayerManager.Player.Controller.holdObj != null)
             {
-                BarGroup.alpha = 1;
-
-                if (seconds >= TimerLimit)
+                if (PlayerManager.Player.Controller.holdObj.tag == "laundry")
                 {
-                    isTimerDone = true;
+                    if (dist < Range)
+                        InstructionGroup.alpha = 1;
+                    else
+                        InstructionGroup.alpha = 0;
+                }
+            }
 
-                    UserInterfaceManager.UI.ActivateCheckmark(2);
+            if (currentItemCount == ItemLimit)
+            {
+                if (!isTimerDone)
+                {
+                    BarGroup.alpha = 1;
 
-                    seconds = 0;
-                    timer = 0;
+                    if (seconds >= TimerLimit)
+                    {
+                        isTimerDone = true;
+
+                        UserInterfaceManager.UI.ActivateCheckmark(2);
+
+                        seconds = 0;
+                        timer = 0;
+                    }
+                    else
+                    {
+                        UpdateTimer();
+
+                        ProgressBar.fillAmount = Custom.ReturnFillAmount(seconds, TimerLimit);
+                        SpotContainer.SetActive(false);
+                    }
                 }
                 else
                 {
-                    UpdateTimer();
+                    BarGroup.alpha = 0;
 
-                    ProgressBar.fillAmount = Custom.ReturnFillAmount(seconds, TimerLimit);
-                    SpotContainer.SetActive(false);
+                    if (Checkmark != null)
+                        Checkmark.alpha = 1;
                 }
             }
-            else
-            {
-                BarGroup.alpha = 0;
 
-                if (Checkmark != null)
-                    Checkmark.alpha = 1;
+            if (currentItemCount == 0)
+            {
+                Checkmark.alpha = 0;
             }
-        }
 
-        if(currentItemCount == 0)
-        {
-            Checkmark.alpha = 0;
-        }
-
-        // SPOT UI
-        if (AllSpots.Count > 0)
-        {
-            if (currentItemCount > 0)
+            // SPOT UI
+            if (AllSpots.Count > 0)
             {
-                for (int i = 0; i < currentItemCount; ++i)
+                if (currentItemCount > 0)
                 {
-                    AllSpots[i].GetComponent<Image>().color = new Color32(90, 188, 70, 255);
+                    for (int i = 0; i < currentItemCount; ++i)
+                    {
+                        AllSpots[i].GetComponent<Image>().color = new Color32(90, 188, 70, 255);
+                    }
                 }
             }
         }

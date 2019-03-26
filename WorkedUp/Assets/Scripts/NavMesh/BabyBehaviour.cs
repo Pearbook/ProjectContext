@@ -21,16 +21,19 @@ public class BabyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if(isInBed)
+        if (!GameplayManager.Gameplay.isDisabled)
         {
-            if (seconds >= TimerLimit)
+            if (isInBed)
             {
-                // Get out bed
-                GetOut();
-            }
-            else
-            {
-                UpdateTimer();
+                if (seconds >= TimerLimit)
+                {
+                    // Get out bed
+                    GetOut();
+                }
+                else
+                {
+                    UpdateTimer();
+                }
             }
         }
     }

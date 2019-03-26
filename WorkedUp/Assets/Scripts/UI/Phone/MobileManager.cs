@@ -33,6 +33,13 @@ public class MobileManager : MonoBehaviour
     private float timer;
     private float seconds;
 
+    [Header("Read Timer")]
+    public float ReadTimerLimit;
+
+    private float readTimer;
+    private float readSeconds;
+    public bool allowClose;
+
     [HideInInspector]
     public bool isOpen;
 
@@ -68,11 +75,21 @@ public class MobileManager : MonoBehaviour
                     // Disable Player
                     PlayerManager.Player.DisablePlayer();
 
-                    // Stop game
-                    //Time.timeScale = 0;
-
                     AddMessageToPhone(false);
                     Phone.TogglePhone();
+                }
+            }
+            else
+            {
+                if (!allowClose)
+                {
+                    if (readTimer >= ReadTimerLimit)
+                    {
+                        allowClose = true;
+                        Phone.EnterText.alpha = 1;
+                    }
+                    else
+                        UpdateReadTimer();
                 }
             }
         }
@@ -88,6 +105,12 @@ public class MobileManager : MonoBehaviour
         isOpen = false;
         timer = 0;
         seconds = 0;
+
+        readTimer = 0;
+        readSeconds = 0;
+
+        allowClose = false;
+        Phone.EnterText.alpha = 0;
 
         PlayerManager.Player.EnablePlayer();
     }
@@ -170,6 +193,12 @@ public class MobileManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         seconds = timer % 60;
+    }
+
+    public void UpdateReadTimer()
+    {
+        readTimer += Time.deltaTime;
+        readSeconds = readTimer % 60;
     }
 
 }

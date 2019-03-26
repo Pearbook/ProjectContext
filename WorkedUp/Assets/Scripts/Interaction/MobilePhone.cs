@@ -20,6 +20,7 @@ public class MobilePhone : MonoBehaviour
 
     [Header("UI")]
     public CanvasGroup NotificationCanvas;
+    public CanvasGroup EnterText;
 
     public GameObject UICamera;
 
@@ -37,7 +38,7 @@ public class MobilePhone : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 1"))
         {
-            if (!isMoving)
+            if (!isMoving && MobileManager.Mobile.allowClose)
             {
                 if (isOpen)
                 {
@@ -58,6 +59,8 @@ public class MobilePhone : MonoBehaviour
                         SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
 
                         UserInterfaceManager.UI.DarkOverlay.alpha = 0;
+
+                        GameplayManager.Gameplay.EnableAllAction();
 
                         MobileManager.Mobile.ClosePhone();
                     }
@@ -86,6 +89,8 @@ public class MobilePhone : MonoBehaviour
                 MobileManager.Mobile.HideNotification();
 
                 UserInterfaceManager.UI.DarkOverlay.alpha = 1;
+
+                GameplayManager.Gameplay.DisableAllAction();
             }
         }
     }
@@ -102,6 +107,8 @@ public class MobilePhone : MonoBehaviour
         SetLayerRecursively(transform.gameObject, LayerMask.NameToLayer("Interactable"));
 
         UserInterfaceManager.UI.DarkOverlay.alpha = 0;
+
+        GameplayManager.Gameplay.EnableAllAction();
     }
 
     public IEnumerator MoveToPosition(Transform transform, Vector3 position, float timeToMove)
