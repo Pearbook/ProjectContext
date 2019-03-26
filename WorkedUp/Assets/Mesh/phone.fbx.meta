@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: 616836f486a00094fbc81c23fb44d80d
+guid: 5009cffb589bf2e409f96fee7a986ae5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: clothing pile 1
-    100004: clothing pile 2
     400000: //RootNode
-    400002: clothing pile 1
-    400004: clothing pile 2
     2100000: No Name
-    2300000: clothing pile 1
-    2300002: clothing pile 2
-    3300000: clothing pile 1
-    3300002: clothing pile 2
-    4300000: clothing pile 2
-    4300002: clothing pile 1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Mesh
   externalObjects: {}
   materials:
     importMaterials: 0
