@@ -35,7 +35,7 @@ public class MobilePhone : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 1"))
         {
             if (!isMoving)
             {

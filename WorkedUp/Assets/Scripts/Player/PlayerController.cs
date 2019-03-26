@@ -54,23 +54,25 @@ public class PlayerController : MonoBehaviour
         if (!isDisabled)
         {
             //TIJDELIJK
+            /*
             if (Input.GetKeyDown(KeyCode.Escape))
-                Application.Quit();
+                Application.Quit();*/
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
                 SceneManager.LoadScene(1);
 
+            /*
             if (Input.GetKeyDown(KeyCode.Return))
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);*/
 
 
             if (allowMovement)
                 InputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                 PlayerAction();
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp("joystick button 0"))
             {
                 if (isInteracting)
                 {

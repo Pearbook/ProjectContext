@@ -20,7 +20,7 @@ public class Couch : MonoBehaviour
     {
         if(isOccupied && MyRange.isInRange)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                 ReleasePlayer();
         }
     }

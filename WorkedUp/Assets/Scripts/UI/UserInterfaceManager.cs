@@ -49,7 +49,7 @@ public class UserInterfaceManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1"))
         {
             ToggleTasklist();
         }
